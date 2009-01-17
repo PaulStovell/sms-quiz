@@ -1,0 +1,18 @@
+﻿<Application x:Class="SmsQuiz.Client.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    	<ResourceDictionary>
+    		<ResourceDictionary.MergedDictionaries>
+    			<ResourceDictionary Source="Resources\BrushResources.xaml"/>
+    			<ResourceDictionary Source="Resources\TextResources.xaml"/>
+    			<ResourceDictionary Source="Resources\FrameResources.xaml"/>
+                <ResourceDictionary Source="Resources\DataTemplateResources.xaml"/>
+                <ResourceDictionary Source="Resources\ButtonResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+    	</ResourceDictionary>
+         
+    </Application.Resources>
+</Application>

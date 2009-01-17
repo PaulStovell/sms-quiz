@@ -1,0 +1,49 @@
+﻿<Page 
+    x:Class="SmsQuiz.Client.Pages.RoundPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Answers to 0424 156 472"
+    x:Name="_this" Margin="-4,0,0,0" MinWidth="500" MinHeight="500"
+    >
+    <DockPanel Margin="14,14,14,14">
+        
+        <DockPanel Opacity="0" DockPanel.Dock="Top" Margin="0,0,0,100">
+            <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Round.Question.Text, ElementName=_this}" FontSize="36" FontWeight="Bold" FontStyle="Italic" HorizontalAlignment="Stretch" TextAlignment="Center" TextWrapping="Wrap" />
+        
+    		<Border DockPanel.Dock="Right">
+    			<StackPanel>
+    				<Button Click="LockedInButton_Click" Content="Lock in" Height="36" Width="100" Margin="7,7,7,7"/>
+    				<Button Click="NextRoundButton_Click" Content="Next round" Height="36" Width="100" Margin="7,7,7,7"/>
+    			</StackPanel>
+    		</Border>
+            
+        	<ItemsControl ItemsSource="{Binding Path=Round.Question.AvailableAnswers, ElementName=_this}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid IsItemsHost="True" Margin="14" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+            
+            <DockPanel.Triggers>
+                <EventTrigger RoutedEvent="Page.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:1" BeginTime="0:0:2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </DockPanel.Triggers>
+        </DockPanel>
+        
+        <ItemsControl 
+            ItemsSource="{Binding Path=Round.ParticipantAnswers, ElementName=_this}"
+            >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid IsItemsHost="True" Margin="14" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DockPanel>
+</Page>

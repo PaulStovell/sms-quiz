@@ -1,0 +1,18 @@
+﻿<Window 
+    x:Class="SmsQuiz.Client.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="1024" Height="768" Title="Window1" x:Name="_this"
+    xmlns:pages="clr-namespace:SmsQuiz.Client.Pages" Background="{DynamicResource Brush_Office2007OutlookNormalButtonGradient}"
+	>
+    <DockPanel>
+    	<Border DockPanel.Dock="Top" Height="100">
+    		<TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF2465C2" Text="{Binding Path=Content.Title, ElementName=_frame, Mode=Default}" FontSize="36" FontWeight="Bold" FontFamily="Segoe UI"/>
+    	</Border>
+    	<Border>
+    		<Border Margin="14,14,14,14" Background="#AAFFFFFF" CornerRadius="14,14,14,14" Padding="14,14,14,14">
+    			<Frame x:Name="_frame"/>
+    		</Border>
+    	</Border>
+    </DockPanel>
+</Window>

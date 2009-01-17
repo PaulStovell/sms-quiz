@@ -1,0 +1,200 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:model="clr-namespace:SmsQuiz.Client.Model"
+    >
+    
+    <DataTemplate DataType="{x:Type model:Answer}">
+        <Border x:Name="_border" Background="Transparent" BorderBrush="Transparent" BorderThickness="2" CornerRadius="7" Padding="7">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" TextAlignment="Center" Text="{Binding Path=Letter}" FontSize="24" FontWeight="Bold" />
+                <TextBlock Grid.Column="1" Text="{Binding Path=Text}" FontSize="24" FontStyle="Italic" />
+            </Grid>
+        </Border>
+        <DataTemplate.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsCorrect}" Value="True" />
+                    <Condition Binding="{Binding ElementName=_this, Path=Round.IsLockedIn}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation 
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="BorderBrush.Color" 
+                                To="DarkGreen"
+                                Duration="0:0:0.4"
+                                />
+                            <ColorAnimation 
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="Background.Color" 
+                                To="LimeGreen"
+                                Duration="0:0:0.4"
+                                />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </MultiDataTrigger.EnterActions>
+            </MultiDataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type model:ParticipantAnswer}">
+        <Border 
+            x:Name="_border" 
+            BorderBrush="{DynamicResource Brush_Office2007LightBlueBorder}" 
+            BorderThickness="2" 
+            CornerRadius="7" 
+            Padding="7" 
+            Opacity="0.5"
+            Margin="3" Background="{DynamicResource Brush_Office2007OutlookNormalButtonGradient}" SnapsToDevicePixels="True"
+            >
+            <TextBlock 
+                Text="{Binding Participant.Name}" 
+                VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextAlignment="Center" 
+                MaxWidth="300" FontFamily="Segoe UI" FontSize="16" FontWeight="Bold"
+                Foreground="Black" />
+        </Border>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=HasAnswered}" Value="True">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="Opacity" 
+                                To="1"
+                                Duration="0:0:0.1"
+                                />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=WasCorrect}" Value="True">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation 
+                                BeginTime="0:0:5"
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="Background.GradientStops[0].Color" 
+                                To="LimeGreen"
+                                Duration="0:0:0.1"
+                                />
+                            <ColorAnimation 
+                                BeginTime="0:0:5"
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="Background.GradientStops[1].Color" 
+                                To="LimeGreen"
+                                Duration="0:0:0.1"
+                                />
+                            <ColorAnimation 
+                                BeginTime="0:0:5"
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="Background.GradientStops[2].Color" 
+                                To="LimeGreen"
+                                Duration="0:0:0.1"
+                                />
+                            <ColorAnimation 
+                                BeginTime="0:0:5"
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="Background.GradientStops[3].Color" 
+                                To="LimeGreen"
+                                Duration="0:0:0.1"
+                                />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=WasCorrect}" Value="False">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation 
+                                BeginTime="0:0:5"
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="Background.GradientStops[0].Color" 
+                                To="Red"
+                                Duration="0:0:0.1"
+                                />
+                            <ColorAnimation 
+                                BeginTime="0:0:5"
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="Background.GradientStops[1].Color" 
+                                To="Red"
+                                Duration="0:0:0.1"
+                                />
+                            <ColorAnimation 
+                                BeginTime="0:0:5"
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="Background.GradientStops[2].Color" 
+                                To="Red"
+                                Duration="0:0:0.1"
+                                />
+                            <ColorAnimation 
+                                BeginTime="0:0:5"
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="Background.GradientStops[3].Color" 
+                                To="Red"
+                                Duration="0:0:0.1"
+                                />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type model:Participant}">
+        <Border 
+            x:Name="_border" 
+            MaxWidth="1" MaxHeight="1"
+            BorderBrush="{DynamicResource Brush_Office2007LightBlueBorder}" 
+            BorderThickness="2" 
+            CornerRadius="7" 
+            Padding="7" 
+            Opacity="0"
+            Margin="3" Background="{DynamicResource Brush_Office2007OutlookNormalButtonGradient}" SnapsToDevicePixels="True"
+            >
+            <TextBlock 
+                Text="{Binding Name}" 
+                VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextAlignment="Center" 
+                MaxWidth="300" FontFamily="Segoe UI" FontSize="16" FontWeight="Bold"
+                Foreground="Black" />
+        </Border>
+        <DataTemplate.Triggers>
+            <EventTrigger RoutedEvent="Border.Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="Opacity" 
+                                To="1"
+                                Duration="0:0:0.1"
+                                />
+                            <DoubleAnimation 
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="MaxWidth" 
+                                To="300"
+                                Duration="0:0:0.1"
+                                />
+                            <DoubleAnimation 
+                                Storyboard.TargetName="_border" 
+                                Storyboard.TargetProperty="MaxHeight" 
+                                To="300"
+                                Duration="0:0:0.1"
+                                />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+</ResourceDictionary>
